@@ -1,0 +1,26 @@
+{
+	"name": "Movie_res",
+	"version": "1.0.0",
+	"description": "movie reservation system",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"server1": "cd Server && cd CartService && npm start",
+		"server2": "cd Server && cd CustomerService && npm start",
+		"server3": "cd Server && cd MovieService && npm start",
+		"server4": "cd Server && cd ReservationService && npm start",
+		"server5": "cd Server && cd TheaterService && npm start",
+		"start": "concurrently \"npm run server1 \" \"npm run server2 \" \"npm run server3 \" \"npm run server4 \" \"npm run server5 \" "
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/geshan99/Movie_res.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/geshan99/Movie_res/issues"
+	},
+	"homepage": "https://github.com/geshan99/Movie_res#readme"
+}
