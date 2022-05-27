@@ -1,6 +1,4 @@
 import Cartservices from "../services/Cartservices";
-
-import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Movieservices from "../services/Movieservices";
 
@@ -36,10 +34,12 @@ function CartItemDetails({
 		try {
 			const movie = await Movieservices.getMovie(
 				//
-				movie_id
+				"6285f334c0200004fcfe7bdf"
 			);
-			console.log(movie.data.post.img);
+			// console.log(movie.data.post.img);
 			setData(movie.data.post.img);
+			// console.log(sdfhdfvghdsfh);
+			// console.log(movie);
 		} catch (err) {
 			console.log(err);
 		}
@@ -65,7 +65,9 @@ function CartItemDetails({
 			</div>
 			<div className="cart-item-price">
 				<h3>{dollarUS.format(price)}</h3>
-				<a onClick={delcart}>remove</a>
+				<a href="/cart" onClick={delcart}>
+					remove
+				</a>
 			</div>
 		</div>
 	);

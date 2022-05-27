@@ -46,6 +46,7 @@ function Cart() {
 			console.log(err);
 		}
 	};
+	console.log(data);
 
 	return (
 		<div className="cart-page-bg">
@@ -99,7 +100,7 @@ function Cart() {
 				</div>
 				<div className="cart-checkout-btn-container">
 					<button className="cart-checkout-btn">
-						<a href="#">Checkout</a>
+						<a href="/Checkout">Checkout</a>
 					</button>
 				</div>
 			</div>
