@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { CDropdownDivider } from "@coreui/react";
 import Checkout from "./Checkout";
 import { NavLink } from "react-router-dom";
+import { TiShoppingCart } from "react-icons/ti";
 
 export default function MovieDetail(props) {
 	const [TicketPrice, setTicketPrice] = useState("");
@@ -217,11 +218,16 @@ export default function MovieDetail(props) {
 					<button className="cart" onClick={handleAddCart}>
 						Add to Cart
 					</button>
+					<span>
+						<a href="/cart">
+							<TiShoppingCart
+								size={45}
+								style={{ marginLeft: "1em" }}
+							/>
+						</a>
+					</span>
 					<br />
-					<div>
-						{" "}
-						<a href="/cart">cart</a>
-					</div>
+
 					{/* <NavLink to="/Checkout" className="btn btn-primary">
 						Checkout
 					</NavLink> */}
