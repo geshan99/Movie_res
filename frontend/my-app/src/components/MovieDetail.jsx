@@ -13,20 +13,11 @@ import { NavLink } from "react-router-dom";
 
 export default function MovieDetail(props) {
 
-    const [selectedTheater,setSelectedTheater]=useState('');
-    const [showtime,setShowtime]=useState('');
-
-    const[input,setInput] = useState(0);
-
-    let [MovieName,setMovieName] = useState("");
     const[TicketPrice,setTicketPrice] = useState("");
-    const[TheaterLocation,setTheaterLocation] = useState("");
-    const[SeatNumbers,setSeatNumbers] = useState("");
-    const[MovieShowTimes,setMovieShowTimes] = useState("");
+    const [TheaterLocation,setTheaterLocation]=useState('');
+    const [MovieShowTimes,setShowtime]=useState('');
+    const[SeatNumbers,setSeatNumbers] = useState(0);
     const[ResDate,setResDate] = useState("");
-
-   
-    
 
     const { id } = useParams();
     const [data, setData] = useState([]);
@@ -55,36 +46,43 @@ export default function MovieDetail(props) {
         getPackage();
     }, [])
 
-    function sendData(e) {
-        e.preventDefault();
-        const newCart = {
-            MovieName,
-            TicketPrice,
-            TheaterLocation,
-            SeatNumbers,
-            MovieShowTimes,
-            ResDate
-        }
-
-        axios.post("http://localhost:8004/cart/AddCart", newCart).then(() => {
-            console.log(newCart);
-            alert("Cart Added");
-        }).catch((err) => {
-            alert(err);
-        });
+    const newCart = {
+        MovieName :data.MovieName,
+        TicketPrice,
+        TheaterLocation,
+        SeatNumbers,
+        MovieShowTimes,
+        ResDate
     }
 
-    const handleSelect=(e)=>{
+    const handleTheaterLocation=(e)=>{
         console.log(e);
-        setSelectedTheater(e)
+        setTheaterLocation(e)
     }
     const handleSelectShowTime=(e)=>{
         console.log(e);
         setShowtime(e)
     }
 
-    const handleInputChange=(e)=>{
-        setInput(e.target.valueAsNumber || e.target.value);
+    const handleSeatCountAndPrice=(e)=>{
+        setSeatNumbers(e.target.valueAsNumber || e.target.value);
+        setTicketPrice(seatcount*500)
+    }
+
+    const handleResDate=(e)=>{
+        setResDate(e.target.value)
+
+    }
+
+    const handleAddCart=(e)=>{
+        e.preventDefault();
+        axios.post("http://localhost:8004/cart/AddCart", newCart).then(() => {
+            console.log(newCart);
+            alert("Cart Added");
+        }).catch((err) => {
+            alert(err);
+        });
+
     }
 
     console.log(MovieName);
@@ -122,7 +120,7 @@ export default function MovieDetail(props) {
                             alignRight
                             title="Select Theater"
                             id="dropdown-menu-align-right"
-                            onSelect={handleSelect}
+                            onSelect={handleTheaterLocation}
                         >
                             <Dropdown.Item eventKey="Liberty">Liberty</Dropdown.Item>
                             <Dropdown.Item eventKey="Sky Lite">Sky Lite</Dropdown.Item>
@@ -130,7 +128,7 @@ export default function MovieDetail(props) {
 
                         </DropdownButton>
                         <CDropdownDivider/>
-                        <h4 style={{color:"black"}}>You selected {selectedTheater}</h4>
+                        <h4 style={{color:"black"}}>You selected {TheaterLocation}</h4>
                     </div>
 
                     <div className="App container">
@@ -153,16 +151,16 @@ export default function MovieDetail(props) {
                     <div>
                         <label style={{color:"black"}}>Number of seats</label>
                         <br/>
-                        <input min={0} style={{color:"black"}} type="number" value={input} onChange={handleInputChange} placeholder="sheet count"/>
+                        <input min={0} style={{color:"black"}} type="number" value={seatcount} onChange={handleSeatCountAndPrice} placeholder="seat count"/>
                         <br/><br/>
-                        <label style={{color:"black"}}>Price : {input*500} </label>
+                        <label style={{color:"black"}}>Price : {seatcount*500} </label>
                         <br/><br/>
                         <label style={{color:"black"}}>Date</label>
                         <br/>
-                        <input min={0} style={{color:"black"}} type="date" placeholder="sheet count"/>
+                        <input min={0} style={{color:"black"}} type="date" onChange={handleResDate} placeholder="sheet count"/>
                         <br/><br/>
                     </div>
-                    <button className="cart" >Add to Cart</button>
+                    <button className="cart" onClick={handleAddCart}>Add to Cart</button>
                     <br />
                     <NavLink to="/Checkout" className="btn btn-primary">Checkout</NavLink>
                 </div>
