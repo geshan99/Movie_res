@@ -47,6 +47,8 @@
 .cart-item-details h3 {
 	margin-bottom: 1em;
 	margin-top: 0.8em;
+	font-size: 18px;
+	font-weight: 700;
 }
 .cart-item-details p {
 	margin-right: 1em;
@@ -65,7 +67,7 @@
 	margin: 0em 2em 0em 3em;
 }
 .cart-checkout-btn {
-	padding: 0.6em 5em 0.6em 5em;
+	padding: 0.3em 2em 0.3em 2em;
 	border-radius: 20px;
 	border: none;
 	background-color: #adcffa;

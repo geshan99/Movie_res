@@ -8,7 +8,7 @@ function Cart() {
 	let sum = 0;
 	let dollarUS = Intl.NumberFormat("en-US", {
 		style: "currency",
-		currency: "USD",
+		currency: "LKR",
 	});
 
 	useEffect(() => {
@@ -71,7 +71,7 @@ function Cart() {
 									price={item.TicketPrice}
 									location={item.TheaterLocation}
 									show_time={item.MovieShowTimes}
-									seat_count={item.SeatNumbers.length}
+									seat_count={item.SeatNumbers[0]}
 								/>
 							);
 						})}

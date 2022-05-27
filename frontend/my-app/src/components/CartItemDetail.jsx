@@ -4,7 +4,7 @@ import Movieservices from "../services/Movieservices";
 
 let dollarUS = Intl.NumberFormat("en-US", {
 	style: "currency",
-	currency: "USD",
+	currency: "LKR",
 });
 
 function CartItemDetails({
@@ -33,13 +33,11 @@ function CartItemDetails({
 	const getMovie = async () => {
 		try {
 			const movie = await Movieservices.getMovie(
-				//
+				//TODO:change this to movie_id when the API is ready.This is a static image ID.
 				"6285f334c0200004fcfe7bdf"
 			);
-			// console.log(movie.data.post.img);
+
 			setData(movie.data.post.img);
-			// console.log(sdfhdfvghdsfh);
-			// console.log(movie);
 		} catch (err) {
 			console.log(err);
 		}
